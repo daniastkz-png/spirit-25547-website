@@ -1,0 +1,343 @@
+@import "tailwindcss";
+
+/* ───────────────────────────── Design tokens ───────────────────────────── */
+
+@theme {
+  /* Surfaces */
+  --color-ink: #0a0a0a; /* pitch black — page background */
+  --color-carbon: #121212; /* dark slate carbon — alternate sections */
+  --color-graphite: #1a1a1a; /* raised surfaces */
+  --color-edge: #2a2a2a; /* hairlines */
+
+  /* Accents */
+  --color-volt: #ffe600; /* electric yellow */
+  --color-gold: #ffd000; /* deep electric yellow */
+  --color-blaze: #ffaa00; /* cyber amber */
+
+  /* Text */
+  --color-mute: #9ca3af; /* secondary muted gray */
+
+  --shadow-glow-sm: 0 0 12px rgb(255 230 0 / 0.3);
+  --shadow-glow: 0 0 20px rgb(255 230 0 / 0.35);
+  --shadow-glow-lg: 0 0 48px rgb(255 230 0 / 0.4);
+
+  --text-shadow-glow: 0 0 18px rgb(255 230 0 / 0.55), 0 0 48px rgb(255 170 0 / 0.35);
+  --text-shadow-glow-sm: 0 0 12px rgb(255 230 0 / 0.5);
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 120rem;
+
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-blink: blink 1.2s steps(1, end) infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-scan: scan 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  --animate-pulse-ring: pulse-ring 1.1s var(--ease-snap) infinite;
+  --animate-flicker: flicker 5s linear infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes scan {
+    0% {
+      top: 0%;
+      opacity: 0;
+    }
+    8%,
+    92% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      box-shadow:
+        0 0 0 0 rgb(255 230 0 / 0.65),
+        0 0 20px rgb(255 230 0 / 0.45);
+    }
+    100% {
+      box-shadow:
+        0 0 0 12px rgb(255 230 0 / 0),
+        0 0 28px rgb(255 230 0 / 0.55);
+    }
+  }
+  @keyframes flicker {
+    0%,
+    19%,
+    21%,
+    62%,
+    64%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    63% {
+      opacity: 0.55;
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ───────────────────────────── Base ───────────────────────────── */
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background-color: var(--color-ink);
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-color: #3a3a3a var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Scale the whole rem-based layout up on QHD / 4K displays. */
+  @media (min-width: 2560px) {
+    html {
+      font-size: 125%;
+    }
+  }
+  @media (min-width: 3800px) {
+    html {
+      font-size: 162.5%;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-volt);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-volt);
+    outline-offset: 3px;
+  }
+}
+
+/* ───────────────────────────── Utilities ───────────────────────────── */
+
+/* Condensed display type, cut from the same variable Saira family as body copy. */
+@utility font-display {
+  font-family: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 75%;
+}
+
+/* Extra-condensed cut for giant wordmarks. */
+@utility font-display-xc {
+  font-family: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
+  font-stretch: 62.5%;
+}
+
+/* Wireframe grid overlay. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility bg-grid-fine {
+  background-image:
+    linear-gradient(to right, rgb(255 230 0 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 230 0 / 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Black / yellow safety striping. */
+@utility bg-hazard {
+  background-image: repeating-linear-gradient(-45deg, var(--color-volt) 0 10px, var(--color-ink) 10px 20px);
+}
+
+/* Woven carbon-fiber texture. */
+@utility bg-carbon-weave {
+  background-color: #101010;
+  background-image:
+    linear-gradient(27deg, #131313 5px, transparent 5px), linear-gradient(207deg, #131313 5px, transparent 5px),
+    linear-gradient(27deg, #1c1c1c 5px, transparent 5px), linear-gradient(207deg, #1c1c1c 5px, transparent 5px),
+    linear-gradient(90deg, #161616 10px, transparent 10px),
+    linear-gradient(#181818 25%, #151515 25%, #151515 50%, transparent 50%, transparent 75%, #1d1d1d 75%, #1d1d1d);
+  background-position:
+    0 5px,
+    10px 0,
+    0 10px,
+    10px 5px,
+    0 0,
+    0 0;
+  background-size: 20px 20px;
+}
+
+@utility scanlines {
+  background-image: repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px);
+}
+
+/* Chamfered (cut) corners — top-left and bottom-right. Size via --chamfer. */
+@utility clip-chamfer {
+  clip-path: polygon(
+    var(--chamfer, 12px) 0,
+    100% 0,
+    100% calc(100% - var(--chamfer, 12px)),
+    calc(100% - var(--chamfer, 12px)) 100%,
+    0 100%,
+    0 var(--chamfer, 12px)
+  );
+}
+
+/* ───────────────────────────── Components ───────────────────────────── */
+
+/* RGB-split glitch for the hero wordmark. Text is mirrored from data-text. */
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: none;
+}
+.glitch::before {
+  color: var(--color-volt);
+}
+.glitch::after {
+  color: var(--color-blaze);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .glitch::before {
+    animation: glitch-a 7s steps(1, end) 2.4s infinite;
+  }
+  .glitch::after {
+    animation: glitch-b 7s steps(1, end) 2.4s infinite;
+  }
+}
+
+@keyframes glitch-a {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 100% 0);
+  }
+  89% {
+    opacity: 1;
+    transform: translate(-0.04em, 0);
+    clip-path: inset(12% 0 64% 0);
+  }
+  91% {
+    opacity: 1;
+    transform: translate(0.03em, 0);
+    clip-path: inset(58% 0 18% 0);
+  }
+  93% {
+    opacity: 1;
+    transform: translate(-0.02em, 0);
+    clip-path: inset(34% 0 44% 0);
+  }
+  95% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-b {
+  0%,
+  89%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 100% 0);
+  }
+  90% {
+    opacity: 0.9;
+    transform: translate(0.05em, 0);
+    clip-path: inset(70% 0 6% 0);
+  }
+  92% {
+    opacity: 0.9;
+    transform: translate(-0.03em, 0);
+    clip-path: inset(22% 0 60% 0);
+  }
+  94% {
+    opacity: 0;
+  }
+}
+
+/* Hero entrance — pure CSS so it plays on first paint, before JavaScript hydrates. */
+@media (prefers-reduced-motion: no-preference) {
+  .enter-rise {
+    animation: enter-rise 0.8s var(--ease-snap) var(--delay, 0s) both;
+  }
+  .enter-letter {
+    animation: enter-letter 0.7s var(--ease-snap) var(--delay, 0s) both;
+  }
+  .enter-pop {
+    animation: enter-pop 1.1s var(--ease-snap) var(--delay, 0s) both;
+  }
+  .float-y {
+    animation: float-y var(--float-duration, 5s) ease-in-out var(--delay, 0s) infinite;
+  }
+}
+
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes enter-letter {
+  from {
+    opacity: 0;
+    transform: translateY(45%) skewY(10deg);
+  }
+}
+
+@keyframes enter-pop {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.94);
+  }
+}
+
+@keyframes float-y {
+  50% {
+    transform: translateY(-9px);
+  }
+}
