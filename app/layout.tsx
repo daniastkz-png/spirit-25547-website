@@ -18,6 +18,14 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+// Versioned filename so social platforms fetch the new image instead of a cached copy.
+const shareImage = {
+  url: "/og-image-v2.png",
+  width: 1200,
+  height: 630,
+  alt: "SPIRIT, FIRST Tech Challenge robotics team #25547. Unleash the drive.",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -47,11 +55,13 @@ export const metadata: Metadata = {
     title: site.title,
     description: site.description,
     locale: "en_US",
+    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
+    images: [shareImage],
   },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },

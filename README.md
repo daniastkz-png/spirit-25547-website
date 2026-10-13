@@ -61,8 +61,10 @@ embed), swap it in for `<RobotBlueprint />` in `components/sections/robot-specs.
 
 ### Social preview images
 
-`app/opengraph-image.png` (1200 × 630) and `app/apple-icon.png` are static files; replace them to change how links
-look when shared. The favicon is `app/icon.svg`.
+The link-preview image is `public/og-image-v2.png` (1200 × 630), set as `og:image` and `twitter:image` in
+`app/layout.tsx`. When you change it, save it under a new name (for example `og-image-v3.png`) and update `shareImage`
+there, so social platforms fetch the new file instead of a cached copy. The iOS home-screen icon is `app/apple-icon.png`
+and the favicon is `app/icon.svg`.
 
 ## Deploying
 

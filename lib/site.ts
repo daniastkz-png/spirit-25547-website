@@ -17,7 +17,7 @@ export const site = {
   teamNumber: "25547",
   title: "SPIRIT | FTC Robotics Team #25547",
   description:
-    "SPIRIT is FIRST Tech Challenge robotics team #25547 from Astana, Kazakhstan — engineering the future of autonomous robotics through precision CAD, agile programming and relentless passion.",
+    "SPIRIT is a FIRST Tech Challenge robotics team (#25547) from Astana, Kazakhstan — engineering the future of autonomous robotics through precision CAD, agile programming and relentless passion.",
   url: siteUrl.replace(/\/$/, ""),
   rookieYear: 2023,
   homeBase: "Al-Farabi Palace of Schoolchildren",
