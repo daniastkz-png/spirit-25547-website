@@ -27,7 +27,7 @@ export function Portfolio() {
         <Reveal>
           <SectionHeader
             index="05"
-            kicker="Engineering Portfolio"
+            kicker="Portfolio"
             title={
               <>
                 Documented. Defended. <span className="text-volt">Downloadable.</span>
