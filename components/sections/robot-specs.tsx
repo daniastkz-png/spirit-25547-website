@@ -54,7 +54,7 @@ export function RobotSpecs() {
         <Reveal>
           <SectionHeader
             index="02"
-            kicker="Robot & Tech"
+            kicker="Robot"
             title={
               <>
                 The robot: <span className="text-volt">technical specs</span>

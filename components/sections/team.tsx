@@ -37,7 +37,7 @@ export function Team() {
                 </p>
                 <p>
                   Since {site.rookieYear}, we&apos;ve designed, built and programmed our robots from scratch, earned
-                  Inspire, Connect and Reach awards, and competed at two Central Asia Championships. Beyond the robot,
+                  Inspire and Reach awards, and competed at two Central Asia Championships. Beyond the robot,
                   we use FTC to grow as engineers and give back to our community.
                 </p>
               </div>
