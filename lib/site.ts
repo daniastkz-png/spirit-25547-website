@@ -193,6 +193,12 @@ export const team: TeamMember[] = [
     photo: "/team/bekzhan.webp",
   },
   {
+    name: "Sultanali",
+    role: "Builder",
+    bio: "Builds and maintains the robot's mechanisms, keeping every part match-ready.",
+    photo: "/team/sultanali.webp",
+  },
+  {
     name: "Nurassyl",
     role: "Coder",
     bio: "Programs driver control, autonomous routines and vision.",
