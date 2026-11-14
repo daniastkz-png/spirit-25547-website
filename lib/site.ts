@@ -181,6 +181,12 @@ export const team: TeamMember[] = [
     photo: "/team/darina.webp",
   },
   {
+    name: "Iskander",
+    role: "Outreach",
+    bio: "Runs outreach events and workshops that bring new students into FIRST.",
+    photo: "/team/iskander.webp",
+  },
+  {
     name: "Khamza",
     role: "Main Builder",
     bio: "Heads the build, turning CAD into a competition-ready robot.",
