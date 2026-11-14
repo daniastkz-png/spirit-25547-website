@@ -49,8 +49,8 @@ export function Portfolio() {
                 The SPIRIT engineering portfolio
               </h3>
               <p className="mt-4 max-w-lg leading-relaxed text-mute">
-                Design iterations, CAD, code architecture, testing data, outreach and our business plan, condensed into
-                the document we present to FTC judges.
+                Robot iterations, CAD, testing data, programming, outreach and finance, condensed into the document we
+                present to FTC judges.
               </p>
 
               <ol className="mt-8 border-t border-white/10">
@@ -70,7 +70,7 @@ export function Portfolio() {
                   Download portfolio
                 </ButtonLink>
                 <p className="font-mono text-[10px] leading-relaxed tracking-[0.18em] text-mute uppercase">
-                  Format: PDF
+                  PDF · 13 pages · 10 MB
                   <br />
                   Team #{site.teamNumber} · {site.location.short}
                 </p>
