@@ -290,11 +290,11 @@ export const outreach: { id: OutreachId; tag: string; title: string; body: strin
 ];
 
 export const portfolioChapters = [
-  "Team, mission & season goals",
-  "Engineering design process",
-  "Robot subsystems & CAD",
-  "Software, vision & autonomous",
-  "Outreach, business & sustainability",
+  "Team, goals & finance",
+  "Outreach, events & mentorship",
+  "Engineering process & robot iterations",
+  "Intake & shooter subsystems",
+  "Programming, autonomous & match strategy",
 ] as const;
 
 /* ───────────────────────────── Sponsors ───────────────────────────── */
