@@ -73,7 +73,7 @@ export const footerLinks = [...navLinks, { label: "Sponsors", href: "#sponsors" 
 
 export const heroBadges = [
   { id: "sizing", label: "18x18x18 COMPLIANT" },
-  { id: "auto", label: "AUTO ACCURACY: 98.4%" },
+  { id: "auto", label: "AUTO PATHING: ±2 CM" },
   { id: "vision", label: "APRILTAG VISION LOCK" },
 ] as const;
 
