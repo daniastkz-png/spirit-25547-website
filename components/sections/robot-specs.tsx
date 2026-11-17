@@ -3,7 +3,7 @@
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, Box, Cog, ScanEye, type LucideIcon, MoveVertical } from "lucide-react";
 import { useRef, useState } from "react";
-import { RobotBlueprint } from "@/components/robot/robot-blueprint";
+import { RobotCad } from "@/components/robot/robot-cad";
 import { Container, MonoTag, SectionHeader } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/reveal";
 import { subsystems, type SubsystemId } from "@/lib/site";
@@ -60,7 +60,7 @@ export function RobotSpecs() {
                 The robot: <span className="text-volt">technical specs</span>
               </>
             }
-            description="Four subsystems, one 18-inch cube. Pick a subsystem to light it up in the CAD viewer, then drag the model to inspect it from any angle."
+            description="Aldente 3, straight from our Onshape CAD. Drag the model to inspect it from any angle, and pick a subsystem to see how it works."
           />
         </Reveal>
 
@@ -139,7 +139,7 @@ export function RobotSpecs() {
 
           {/* Viewer */}
           <Reveal className="lg:col-span-7 lg:row-span-2 xl:col-span-8" delay={0.1}>
-            <RobotBlueprint active={active} />
+            <RobotCad />
           </Reveal>
 
           {/* Details */}
