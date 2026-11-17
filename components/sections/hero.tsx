@@ -1,6 +1,6 @@
 import { Box, ChevronDown, Crosshair as CrosshairIcon, FileDown, ScanEye, ScanLine } from "lucide-react";
 import { LiveTelemetry } from "@/components/hero/live-telemetry";
-import { RobotRender } from "@/components/robot/robot-render";
+import { RobotShowcaseModel } from "@/components/robot/robot-showcase-model";
 import { ButtonLink } from "@/components/ui/button";
 import { Container, HudCorners, MonoTag, StatusDot } from "@/components/ui/primitives";
 import { awards, heroBadges, site } from "@/lib/site";
@@ -139,7 +139,13 @@ function RobotShowcase() {
           <div className="absolute inset-0 bg-grid-fine [mask-image:radial-gradient(circle_at_50%_55%,black_25%,transparent_72%)] opacity-70" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_60%,rgba(255,230,0,0.14),transparent_55%)]" />
 
-          <RobotRender className="absolute inset-0 size-full" />
+          {/* Floor glow under the robot */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-[12%] top-[62%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,rgba(255,230,0,0.22),transparent)] blur-md"
+          />
+
+          <RobotShowcaseModel className="absolute inset-x-0 top-10 bottom-12" />
 
           {/* Sweeping scan line */}
           <div

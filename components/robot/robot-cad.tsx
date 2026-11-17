@@ -5,15 +5,10 @@ import { Minus, Plus, Rotate3d } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ModelViewerElement } from "@google/model-viewer";
 import { HudCorners } from "@/components/ui/primitives";
+import { CAD_MODEL, CAD_TARGET, loadModelViewer } from "@/lib/robot/cad";
 import { cn } from "@/lib/utils";
 
-/** Aldente 3, exported from the team's Onshape assembly and compressed with glTF Transform (meshopt). */
-const MODEL = { src: "/cad/aldente-3.glb", size: "4.5 MB" };
-const DECODER = "/vendor/meshopt_decoder.js";
-
-// The meshopt-quantized file reports a 2 m bounding box to model-viewer, so its
-// auto-framing is useless: the target and zoom range are set from the real geometry.
-const TARGET = "0.0175m 0.15m 0.05m";
+// model-viewer can't size the model itself (see CAD_TARGET), so the zoom range is fixed here.
 const RADIUS = { min: 0.6, max: 2.4 };
 
 const PRESETS = {
@@ -41,11 +36,8 @@ export function RobotCad({ className }: { className?: string }) {
   useEffect(() => {
     if (!near) return;
     let cancelled = false;
-    import("@google/model-viewer")
-      .then(({ ModelViewerElement }) => {
-        ModelViewerElement.meshoptDecoderLocation = DECODER;
-        if (!cancelled) setReady(true);
-      })
+    loadModelViewer()
+      .then(() => !cancelled && setReady(true))
       .catch(() => !cancelled && setFailed(true));
     return () => {
       cancelled = true;
@@ -100,13 +92,13 @@ export function RobotCad({ className }: { className?: string }) {
         {ready && (
           <model-viewer
             ref={viewerRef}
-            src={MODEL.src}
+            src={CAD_MODEL.src}
             alt="3D CAD model of Aldente 3, SPIRIT's competition robot"
             camera-controls=""
             disable-zoom=""
             touch-action="pan-y"
             interaction-prompt="none"
-            camera-target={TARGET}
+            camera-target={CAD_TARGET}
             camera-orbit={orbit}
             min-camera-orbit={`auto 0deg ${RADIUS.min}m`}
             max-camera-orbit={`auto 100deg ${RADIUS.max}m`}
@@ -126,7 +118,7 @@ export function RobotCad({ className }: { className?: string }) {
           <div className="pointer-events-none absolute inset-0 grid place-items-center">
             <div className="flex w-48 flex-col items-center gap-3">
               <p className="font-mono text-[10px] tracking-[0.2em] text-mute">
-                {failed ? "CAD UNAVAILABLE" : `LOADING CAD · ${MODEL.size}`}
+                {failed ? "CAD UNAVAILABLE" : `LOADING CAD · ${CAD_MODEL.size}`}
               </p>
               {!failed && (
                 <div className="h-0.5 w-full bg-white/10">
